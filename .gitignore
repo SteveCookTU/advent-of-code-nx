@@ -1,0 +1,7 @@
+/target
+/advent-of-code-nx-core/Cargo.lock
+/advent-of-code-nx.nro
+/build/advent-of-code-nx.lst
+/build/advent-of-code-nx.map
+/build/
+/advent-of-code-nx-core/inputs/
