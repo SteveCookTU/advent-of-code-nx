@@ -7,10 +7,7 @@ pub fn run(input: &str) -> String {
     let input = input.split('\n').map(|s| s.trim_end()).collect::<Vec<_>>();
     let part1 = part1(&input);
     let part2 = part2(&input);
-    format!(
-        "Part 1: Max calories is {}\n\nPart 2: Sum of top 3 calories is {}",
-        part1, part2
-    )
+    format!("Part 1: Max calories is {part1}\n\nPart 2: Sum of top 3 calories is {part2}")
 }
 
 fn part1(input: &[&str]) -> u32 {

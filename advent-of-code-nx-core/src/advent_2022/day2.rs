@@ -6,13 +6,10 @@ pub fn run(input: &str) -> String {
     let input = input.split('\n').map(|s| s.trim_end()).collect::<Vec<_>>();
     let part1 = part1(&input);
     let part2 = part2(&input);
-    format!(
-        "Part 1: Total score is {}\n\nPart 2: Total score is {}",
-        part1, part2
-    )
+    format!("Part 1: Total score is {part1}\n\nPart 2: Total score is {part2}")
 }
 
-pub fn part1(input: &[&str]) -> u32 {
+fn part1(input: &[&str]) -> u32 {
     let mut total_score = 0;
     for line in input {
         let (opponent, player) = parse_line_to_choices(line);
@@ -39,7 +36,7 @@ pub fn part1(input: &[&str]) -> u32 {
     total_score
 }
 
-pub fn part2(input: &[&str]) -> u32 {
+fn part2(input: &[&str]) -> u32 {
     let mut total_score = 0;
     for line in input {
         let (opponent, player) = parse_line_to_choices(line);
