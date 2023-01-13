@@ -4,11 +4,11 @@ use alloc::vec::Vec;
 use core::str::FromStr;
 
 pub fn run(input: &str) -> String {
-    let input = input.split('\n').map(|s| s.trim()).collect::<Vec<_>>();
+    let input = input.split('\n').map(|s| s.trim_end()).collect::<Vec<_>>();
     let part1 = part1(&input);
     let part2 = part2(&input);
     format!(
-        "Day 1: Max calories is {}\n\nDay 1: Sum of top 3 calories is {}",
+        "Part 1: Max calories is {}\n\nPart 2: Sum of top 3 calories is {}",
         part1, part2
     )
 }
