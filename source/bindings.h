@@ -13,6 +13,6 @@ void free_result(char *s);
 
 void init_heap();
 
-char *run_day(int32_t year, int32_t day);
+char *run_day(int32_t year, int32_t day, char* input);
 
 } // extern "C"

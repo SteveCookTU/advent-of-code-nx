@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 
     init_heap();
 
-    padConfigureInput(8, HidNpadStyleSet_NpadStandard);
+    padConfigureInput(1, HidNpadStyleSet_NpadStandard);
 
     PadState pad;
     padInitializeAny(&pad);
@@ -47,9 +47,42 @@ int main(int argc, char* argv[])
     {
         if (state == Run)
         {
-            char* result = run_day(year, day);
-            puts(result);
-            free_result(result);
+            char fileName[40];
+
+            snprintf(fileName, 40, "sdmc:/switch/advent_inputs/%d_%d.txt", year, day);
+
+            FILE *fptr;
+
+            if((fptr = fopen(fileName, "r")) == NULL)
+            {
+                printf("Unable to find or open the input file for %d day %d.\n\nSpecified path was %s", year, day, fileName);
+            }
+            else
+            {
+                long fileLen;
+
+                fseek(fptr, 0L, SEEK_END);
+                fileLen = ftell(fptr);
+                fseek(fptr, 0L, SEEK_SET);
+
+                char *input = (char*)calloc(fileLen, sizeof(char));
+
+                if (input == NULL)
+                {
+                    printf("Unable to allocate memory for input");
+                    fclose(fptr);
+                }
+                else
+                {
+                    fread(input, sizeof(char), fileLen, fptr);
+                    fclose(fptr);
+
+                    char* result = run_day(year, day, input);
+                    puts(result);
+                    free_result(result);
+                    free(input);
+                }
+            }
             puts("\n\nPress + to exit or - to return to the starting menu.");
             state = End;
         }

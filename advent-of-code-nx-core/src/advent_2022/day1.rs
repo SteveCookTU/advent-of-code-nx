@@ -3,10 +3,8 @@ use alloc::string::String;
 use alloc::vec::Vec;
 use core::str::FromStr;
 
-static INPUT: &str = include_str!("../../inputs/day1.txt");
-
-pub fn run() -> String {
-    let input = INPUT.split('\n').map(|s| s.trim()).collect::<Vec<_>>();
+pub fn run(input: &str) -> String {
+    let input = input.split('\n').map(|s| s.trim()).collect::<Vec<_>>();
     let part1 = part1(&input);
     let part2 = part2(&input);
     format!(

@@ -6,7 +6,7 @@ extern crate alloc;
 
 use alloc::ffi::CString;
 use alloc::format;
-use core::ffi::c_char;
+use core::ffi::{c_char, CStr};
 use core::panic::PanicInfo;
 use linked_list_allocator::LockedHeap;
 
@@ -35,9 +35,12 @@ pub unsafe extern "C" fn init_heap() {
 }
 
 #[no_mangle]
-pub extern "C" fn run_day(year: i32, day: i32) -> *mut c_char {
+pub extern "C" fn run_day(year: i32, day: i32, input: *const c_char) -> *mut c_char {
+    let c_str = unsafe { CStr::from_ptr(input) };
+    let input = c_str.to_str().unwrap_or("");
+
     let result = match year {
-        2022 => advent_2022::run_day(day),
+        2022 => advent_2022::run_day(day, input),
         _ => format!("Year {} is not yet available!", year),
     };
 
