@@ -2,7 +2,7 @@ version: "2"
 
 services:
   devkit:
-    image: devkitpro/devkita64:latest
+    build: .
     volumes:
       - ".:/advent-of-code-nx"
-    command: bash -c "dkp-pacman -Syu --noconfirm && cd /advent-of-code-nx && make -j8"
+    command: bash -c "dkp-pacman -Syu --noconfirm && cd /advent-of-code-nx/advent-of-code-nx-core && cargo +nightly build -Z build-std=core,alloc --target aarch64-none-elf.json --release && cd .. && make clean && make -j8"
