@@ -65,22 +65,30 @@ int main(int argc, char* argv[])
                 fileLen = ftell(fptr);
                 fseek(fptr, 0L, SEEK_SET);
 
-                char *input = (char*)calloc(fileLen, sizeof(char));
-
-                if (input == NULL)
+                if (fileLen == 0)
                 {
-                    printf("Unable to allocate memory for input");
+                    puts("The input is empty!");
                     fclose(fptr);
                 }
                 else
                 {
-                    fread(input, sizeof(char), fileLen, fptr);
-                    fclose(fptr);
+                    char *input = (char*)calloc(fileLen, sizeof(char));
 
-                    char* result = run_day(year, day, input);
-                    puts(result);
-                    free_result(result);
-                    free(input);
+                    if (input == NULL)
+                    {
+                        printf("Unable to allocate memory for input");
+                        fclose(fptr);
+                    }
+                    else
+                    {
+                        fread(input, sizeof(char), fileLen, fptr);
+                        fclose(fptr);
+
+                        char* result = run_day(year, day, input);
+                        puts(result);
+                        free_result(result);
+                        free(input);
+                    }
                 }
             }
             puts("\n\nPress + to exit or - to return to the starting menu.");

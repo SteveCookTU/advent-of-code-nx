@@ -1,6 +1,7 @@
 use alloc::string::String;
 
 mod day1;
+mod day10;
 mod day2;
 mod day3;
 mod day4;
@@ -8,6 +9,7 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day9;
 
 pub fn run_day(day: i32, input: &str) -> String {
     match day {
@@ -19,6 +21,8 @@ pub fn run_day(day: i32, input: &str) -> String {
         6 => day6::run(input),
         7 => day7::run(input),
         8 => day8::run(input),
+        9 => day9::run(input),
+        10 => day10::run(input),
         _ => String::from("Day not yet implemented!"),
     }
 }
